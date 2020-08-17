@@ -10,8 +10,12 @@ module.exports.play = async(song, client, message) => {
     }
 
     try {
-      var stream = await ytdlDiscord(song.url);
-    } catch (error) {
+      ///var stream = await ytdlDiscord(song.url);
+            let stream = ytdlDiscord(song.url, {
+            filter: "audioonly",
+            opusEncoded: true,
+        }
+   } catch (error) {
       if (queue) {
         queue.songs.shift();
         module.exports.play(queue.songs[0], message);
